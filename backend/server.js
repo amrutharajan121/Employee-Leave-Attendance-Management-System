@@ -32,7 +32,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://employee-leave-attendance-managemen-ecru.vercel.app/"
+      "https://employee-leave-attendance-managemen-ecru.vercel.app"
     ],
     credentials: true,
   })
@@ -59,16 +59,13 @@ app.use("/api/leaves", leaveRoutes);
 app.use("/api/leave-types", leaveTypeRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/manager", managerRoutes);
+app.use("/api/attendance", attendanceRoutes);
 app.use("/api/statistics", statisticsRoutes);
 app.use("/api/statistics/leaves", leaveStatisticsRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/test", testRoutes);
 
-// Export for Vercel
-module.exports = app;
-
-// ==================== SERVER ====================
-
+// Run locally
 if (require.main === module) {
   const PORT = process.env.PORT || 5000;
 
@@ -77,4 +74,5 @@ if (require.main === module) {
   });
 }
 
+// Export for Vercel
 module.exports = app;
