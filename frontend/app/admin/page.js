@@ -127,6 +127,15 @@ export default function AdminDashboard() {
       path: "/admin/leave-statistics",
       button: "View Statistics",
     },
+
+    {
+  title: "Reports",
+  description:
+    "View attendance, leave utilization, department statistics and export reports as CSV.",
+  icon: "📑",
+  path: "/admin/reports",
+  button: "View Reports",
+},
   ];
 
   // ==================== SUMMARY CARDS ====================
@@ -157,6 +166,7 @@ export default function AdminDashboard() {
       value: summary.presentToday,
       icon: "📅",
     },
+
   ];
 
   return (

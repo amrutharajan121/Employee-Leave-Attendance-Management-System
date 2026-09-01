@@ -5,6 +5,10 @@ const {
   getLeaveUtilizationReport,
   getDepartmentEmployeeStatistics,
   getLeaveStatusSummary,
+  exportAttendanceCSV,
+  exportLeaveUtilizationCSV,
+  exportDepartmentStatisticsCSV,
+  exportLeaveStatusCSV,
 } = require("../controllers/reportController");
 
 const protect = require("../middleware/authMiddleware");
@@ -21,6 +25,14 @@ router.get(
   getMonthlyAttendanceSummary
 );
 
+// Export Monthly Attendance CSV
+router.get(
+  "/attendance/monthly/export",
+  protect,
+  authorize("admin"),
+  exportAttendanceCSV
+);
+
 // ==================== LEAVE UTILIZATION REPORT ====================
 
 router.get(
@@ -28,6 +40,14 @@ router.get(
   protect,
   authorize("admin"),
   getLeaveUtilizationReport
+);
+
+// Export Leave Utilization CSV
+router.get(
+  "/leaves/utilization/export",
+  protect,
+  authorize("admin"),
+  exportLeaveUtilizationCSV
 );
 
 // ==================== DEPARTMENT EMPLOYEE STATISTICS ====================
@@ -39,6 +59,14 @@ router.get(
   getDepartmentEmployeeStatistics
 );
 
+// Export Department Statistics CSV
+router.get(
+  "/departments/export",
+  protect,
+  authorize("admin"),
+  exportDepartmentStatisticsCSV
+);
+
 // ==================== LEAVE STATUS SUMMARY ====================
 
 router.get(
@@ -46,6 +74,14 @@ router.get(
   protect,
   authorize("admin"),
   getLeaveStatusSummary
+);
+
+// Export Leave Status Summary CSV
+router.get(
+  "/leaves/status/export",
+  protect,
+  authorize("admin"),
+  exportLeaveStatusCSV
 );
 
 module.exports = router;
