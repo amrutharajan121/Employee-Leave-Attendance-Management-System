@@ -24,15 +24,16 @@ const reportRoutes = require("./routes/reportRoutes");
 
 const app = express();
 
-// ==================== DATABASE ====================
-
+// Database
 connectDB();
 
-// ==================== MIDDLEWARE ====================
-
+// Middleware
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      process.env.CLIENT_URL,
+    ],
     credentials: true,
   })
 );
@@ -40,8 +41,7 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-// ==================== TEST ROUTE ====================
-
+// Test Route
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
@@ -49,43 +49,32 @@ app.get("/", (req, res) => {
   });
 });
 
-// ==================== API ROUTES ====================
-
-// Authentication
+// API Routes
 app.use("/api/auth", authRoutes);
-
-// Departments
 app.use("/api/departments", departmentRoutes);
-
-// Admin
 app.use("/api/admin", adminRoutes);
 app.use("/api/admin", adminEmployeeRoutes);
 app.use("/api/admin/leave-settings", leaveSettingsRoutes);
-
-// Leaves
 app.use("/api/leaves", leaveRoutes);
 app.use("/api/leave-types", leaveTypeRoutes);
-
-// Attendance
 app.use("/api/attendance", attendanceRoutes);
-
-// Manager
 app.use("/api/manager", managerRoutes);
-
-// Statistics
 app.use("/api/statistics", statisticsRoutes);
 app.use("/api/statistics/leaves", leaveStatisticsRoutes);
-
-// Reports
 app.use("/api/reports", reportRoutes);
-
-// Test
 app.use("/api/test", testRoutes);
+
+// Export for Vercel
+module.exports = app;
 
 // ==================== SERVER ====================
 
-const PORT = process.env.PORT || 5000;
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
