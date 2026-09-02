@@ -43,28 +43,28 @@ export default function ReportsPage() {
         statusResponse,
       ] = await Promise.all([
         fetch(
-          `http://localhost:5000/api/reports/attendance/monthly?month=${month}&year=${year}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/reports/attendance/monthly?month=${month}&year=${year}`,
           {
             credentials: "include",
           }
         ),
 
         fetch(
-          `http://localhost:5000/api/reports/leaves/utilization?year=${year}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/reports/leaves/utilization?year=${year}`,
           {
             credentials: "include",
           }
         ),
 
         fetch(
-          "http://localhost:5000/api/reports/departments",
+          `${process.env.NEXT_PUBLIC_API_URL}/api/reports/departments`,
           {
             credentials: "include",
           }
         ),
 
         fetch(
-          `http://localhost:5000/api/reports/leaves/status?year=${year}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/reports/leaves/status?year=${year}`,
           {
             credentials: "include",
           }

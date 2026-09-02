@@ -13,7 +13,7 @@ export default function Profile() {
   const fetchProfile = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/me",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`,
         {
           method: "GET",
           credentials: "include",

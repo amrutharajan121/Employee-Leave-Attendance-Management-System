@@ -22,11 +22,11 @@ export default function AttendancePage() {
       setLoading(true);
 
       const [todayResponse, historyResponse] = await Promise.all([
-        fetch("http://localhost:5000/api/attendance/today", {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/attendance/today`, {
           method: "GET",
           credentials: "include",
         }),
-        fetch("http://localhost:5000/api/attendance/my", {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/attendance/my`, {
           method: "GET",
           credentials: "include",
         }),
@@ -60,7 +60,7 @@ export default function AttendancePage() {
       setMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/attendance/check-in",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/attendance/check-in`,
         {
           method: "POST",
           credentials: "include",
@@ -90,7 +90,7 @@ export default function AttendancePage() {
       setMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/attendance/check-out",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/attendance/check-out`,
         {
           method: "PUT",
           credentials: "include",

@@ -20,7 +20,7 @@ export default function ManagerAttendancePage() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/manager/attendance",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/manager/attendance`,
         {
           method: "GET",
           credentials: "include",

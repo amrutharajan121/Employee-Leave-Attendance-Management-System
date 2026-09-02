@@ -29,7 +29,7 @@ export default function AttendanceStatisticsPage() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/statistics/attendance",
+        `${process.env.NEXT_PUBLIC_API_URL}/statistics/attendance`,
         {
           method: "GET",
           credentials: "include",

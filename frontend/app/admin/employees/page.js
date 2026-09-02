@@ -22,7 +22,7 @@ export default function EmployeeManagement() {
   const checkAdminAndLoadData = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/me",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`,
         {
           method: "GET",
           credentials: "include",
@@ -65,7 +65,7 @@ export default function EmployeeManagement() {
   const fetchEmployees = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/admin/employees",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/admin/employees`,
         {
           method: "GET",
           credentials: "include",
@@ -103,7 +103,7 @@ export default function EmployeeManagement() {
   const fetchDepartments = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/departments",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/departments`,
         {
           method: "GET",
           credentials: "include",
@@ -140,7 +140,7 @@ export default function EmployeeManagement() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/admin/employees/${employeeId}/department`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/admin/employees/${employeeId}/department`,
         {
           method: "PATCH",
           headers: {
@@ -182,7 +182,7 @@ export default function EmployeeManagement() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/admin/employees/${employeeId}/toggle-status`,
+       `${process.env.NEXT_PUBLIC_API_URL}/api/admin/employees/${employeeId}/toggle-status`,
         {
           method: "PATCH",
           credentials: "include",
@@ -214,7 +214,7 @@ export default function EmployeeManagement() {
   const handleLogout = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/logout",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
         {
           method: "POST",
           credentials: "include",

@@ -21,7 +21,7 @@ export default function LeaveStatisticsPage() {
       setMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/statistics/leaves",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/statistics/leaves`,
         {
           method: "GET",
           credentials: "include",

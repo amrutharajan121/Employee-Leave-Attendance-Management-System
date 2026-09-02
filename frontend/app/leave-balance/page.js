@@ -22,7 +22,7 @@ export default function LeaveBalance() {
       setMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/leaves/balance",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/leaves/balance`,
         {
           method: "GET",
           credentials: "include",

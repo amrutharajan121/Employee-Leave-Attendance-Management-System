@@ -20,7 +20,7 @@ export default function DepartmentManagement() {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/departments",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/departments`,
         {
           method: "GET",
           credentials: "include",
@@ -60,7 +60,7 @@ export default function DepartmentManagement() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/departments",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/departments`,
         {
           method: "POST",
           credentials: "include",
@@ -99,7 +99,7 @@ export default function DepartmentManagement() {
   const handleToggleStatus = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/departments/${id}/status`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/departments/${id}/status`,
         {
           method: "PATCH",
           credentials: "include",

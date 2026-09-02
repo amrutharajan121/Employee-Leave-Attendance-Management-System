@@ -19,7 +19,7 @@ export default function LeaveTypesPage() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/leave-types",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/leave-types`,
         {
           method: "GET",
           headers: {
@@ -69,7 +69,7 @@ export default function LeaveTypesPage() {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/leave-types",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/leave-types`,
         {
           method: "POST",
           headers: {
@@ -114,7 +114,7 @@ export default function LeaveTypesPage() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/leave-types/${id}/status`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/leave-types/${id}/status`,
         {
           method: "PATCH",
           headers: {
