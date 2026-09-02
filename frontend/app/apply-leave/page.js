@@ -25,7 +25,7 @@ export default function ApplyLeave() {
       setMessage("");
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/leave-types`,
+        "http://localhost:5000/api/leave-types",
         {
           method: "GET",
           credentials: "include",
@@ -86,7 +86,7 @@ export default function ApplyLeave() {
       setLoading(true);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/leaves`,
+        "http://localhost:5000/api/leaves",
         {
           method: "POST",
           headers: {

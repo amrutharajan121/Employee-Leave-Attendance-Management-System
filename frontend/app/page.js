@@ -24,7 +24,7 @@ export default function LoginPage() {
       setLoading(true);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
+        "http://localhost:5000/api/auth/login",
         {
           method: "POST",
           headers: {

@@ -19,7 +19,7 @@ export default function ManagerDashboard() {
       setLoading(true);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/manager/profile`,
+        "http://localhost:5000/api/manager/profile",
         {
           method: "GET",
           credentials: "include",
@@ -47,7 +47,7 @@ export default function ManagerDashboard() {
   const handleLogout = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
+        "http://localhost:5000/api/auth/logout",
         {
           method: "POST",
           credentials: "include",

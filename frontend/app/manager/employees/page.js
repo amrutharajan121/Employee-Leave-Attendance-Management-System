@@ -21,7 +21,7 @@ export default function ManagerEmployeesPage() {
       setError("");
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/manager/employees`,
+        "http://localhost:5000/api/manager/employees",
         {
           method: "GET",
           credentials: "include",

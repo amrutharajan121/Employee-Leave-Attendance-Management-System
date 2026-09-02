@@ -19,7 +19,7 @@ export default function LeaveTypesPage() {
       setError("");
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/leave-types`,
+        "http://localhost:5000/api/leave-types",
         {
           method: "GET",
           headers: {
@@ -32,7 +32,6 @@ export default function LeaveTypesPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        // Do not throw error here, otherwise Next.js shows error overlay
         setError(data.message || "Failed to fetch leave types");
         setLeaveTypes([]);
         return;
@@ -69,7 +68,7 @@ export default function LeaveTypesPage() {
       setLoading(true);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/leave-types`,
+        "http://localhost:5000/api/leave-types",
         {
           method: "POST",
           headers: {
@@ -114,7 +113,7 @@ export default function LeaveTypesPage() {
       setMessage("");
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/leave-types/${id}/status`,
+        `http://localhost:5000/api/leave-types/${id}/status`,
         {
           method: "PATCH",
           headers: {

@@ -22,7 +22,7 @@ export default function EmployeeManagement() {
   const checkAdminAndLoadData = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`,
+        "http://localhost:5000/api/auth/me",
         {
           method: "GET",
           credentials: "include",
@@ -65,7 +65,7 @@ export default function EmployeeManagement() {
   const fetchEmployees = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/admin/employees`,
+        "http://localhost:5000/api/admin/employees",
         {
           method: "GET",
           credentials: "include",
@@ -103,7 +103,7 @@ export default function EmployeeManagement() {
   const fetchDepartments = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/departments`,
+        "http://localhost:5000/api/departments",
         {
           method: "GET",
           credentials: "include",
@@ -128,52 +128,50 @@ export default function EmployeeManagement() {
   // ==================== ASSIGN DEPARTMENT ====================
 
   const handleAssignDepartment = async (employeeId) => {
-    const departmentId = selectedDepartments[employeeId];
+  const departmentId = selectedDepartments[employeeId];
 
-    if (!departmentId) {
-      setMessage("Please select a department");
+  if (!departmentId) {
+    setMessage("Please select a department");
+    return;
+  }
+
+  try {
+    setUpdatingId(employeeId);
+    setMessage("");
+
+    const response = await fetch(
+      `http://localhost:5000/api/admin/employees/${employeeId}/department`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          departmentId,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      setMessage(
+        data.message || "Failed to assign department"
+      );
       return;
     }
 
-    try {
-      setUpdatingId(employeeId);
-      setMessage("");
+    setMessage("Department assigned successfully");
 
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/admin/employees/${employeeId}/department`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            departmentId,
-          }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setMessage(
-          data.message || "Failed to assign department"
-        );
-        return;
-      }
-
-      setMessage("Department assigned successfully");
-
-      // Refresh employee data
-      await fetchEmployees();
-    } catch (error) {
-      console.error("Assign department error:", error);
-      setMessage("Unable to assign department");
-    } finally {
-      setUpdatingId(null);
-    }
-  };
-
+    await fetchEmployees();
+  } catch (error) {
+    console.error("Assign department error:", error);
+    setMessage("Unable to assign department");
+  } finally {
+    setUpdatingId(null);
+  }
+};
   // ==================== TOGGLE EMPLOYEE STATUS ====================
 
   const handleToggleStatus = async (employeeId) => {
@@ -182,7 +180,7 @@ export default function EmployeeManagement() {
       setMessage("");
 
       const response = await fetch(
-       `${process.env.NEXT_PUBLIC_API_URL}/api/admin/employees/${employeeId}/toggle-status`,
+       `http://localhost:5000/api/admin/employees/${employeeId}/toggle-status`,
         {
           method: "PATCH",
           credentials: "include",
@@ -214,7 +212,7 @@ export default function EmployeeManagement() {
   const handleLogout = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
+        "http://localhost:5000/api/auth/logout",
         {
           method: "POST",
           credentials: "include",

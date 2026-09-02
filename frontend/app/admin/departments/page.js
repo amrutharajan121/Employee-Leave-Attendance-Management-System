@@ -20,7 +20,7 @@ export default function DepartmentManagement() {
       setLoading(true);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/departments`,
+        "http://localhost:5000/api/departments",
         {
           method: "GET",
           credentials: "include",
@@ -60,7 +60,7 @@ export default function DepartmentManagement() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/departments`,
+        "http://localhost:5000/api/departments",
         {
           method: "POST",
           credentials: "include",
@@ -97,37 +97,34 @@ export default function DepartmentManagement() {
   // ==================== TOGGLE STATUS ====================
 
   const handleToggleStatus = async (id) => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/departments/${id}/status`,
-        {
-          method: "PATCH",
-          credentials: "include",
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        alert(data.message || "Failed to update department status");
-        return;
+  try {
+    const response = await fetch(
+      `http://localhost:5000/api/departments/${id}/status`,
+      {
+        method: "PATCH",
+        credentials: "include",
       }
+    );
 
-      // Update only the changed department in UI
-      setDepartments((prevDepartments) =>
-        prevDepartments.map((department) =>
-          department._id === id
-            ? data.department
-            : department
-        )
-      );
+    const data = await response.json();
 
-      alert(data.message);
-    } catch (error) {
-      console.error("Toggle status error:", error);
-      alert("Unable to connect to server");
+    if (!response.ok) {
+      alert(data.message || "Failed to update department status");
+      return;
     }
-  };
+
+    setDepartments((prevDepartments) =>
+      prevDepartments.map((department) =>
+        department._id === id ? data.department : department
+      )
+    );
+
+    alert(data.message || "Department status updated successfully");
+  } catch (error) {
+    console.error("Toggle status error:", error);
+    alert("Unable to connect to server");
+  }
+};
 
   return (
     <div

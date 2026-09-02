@@ -26,7 +26,7 @@ export default function PendingLeavesPage() {
       setError("");
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/manager/leaves/pending`,
+        "http://localhost:5000/api/manager/leaves/pending",
         {
           method: "GET",
           credentials: "include",
@@ -56,7 +56,7 @@ export default function PendingLeavesPage() {
       setError("");
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/manager/leaves/${leaveId}/approve`,
+        "http://localhost:5000/api/manager/leaves/${leaveId}/approve",
         {
           method: "PATCH",
           credentials: "include",
@@ -104,7 +104,7 @@ export default function PendingLeavesPage() {
       setError("");
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/manager/leaves/${rejectingLeave._id}/reject`,
+        "http://localhost:5000/api/manager/leaves/${rejectingLeave._id}/reject",
         {
           method: "PATCH",
           headers: {

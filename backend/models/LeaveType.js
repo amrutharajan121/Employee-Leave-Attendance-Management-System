@@ -5,15 +5,20 @@ const leaveTypeSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      unique: true,
       trim: true,
+      unique: true,
     },
 
     annualLimit: {
       type: Number,
       required: true,
       min: 0,
-      default: 0,
+    },
+
+    description: {
+      type: String,
+      default: "",
+      trim: true,
     },
 
     isActive: {

@@ -20,7 +20,7 @@ export default function TeamLeaveHistoryPage() {
       setError("");
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/manager/leaves/history`,
+        "http://localhost:5000/api/manager/leaves/history",
         {
           method: "GET",
           credentials: "include",

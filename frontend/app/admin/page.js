@@ -27,7 +27,7 @@ export default function AdminDashboard() {
       setLoading(true);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/statistics/dashboard-summary`,
+        "http://localhost:5000/api/statistics/dashboard-summary",
         {
           method: "GET",
           credentials: "include",
@@ -61,7 +61,7 @@ export default function AdminDashboard() {
  const handleLogout = async () => {
   try {
     const response = await fetch(
-  `${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
+  "http://localhost:5000/api/auth/logout",
   {
     method: "POST",
     credentials: "include",
