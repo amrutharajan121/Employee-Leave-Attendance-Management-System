@@ -31,8 +31,8 @@ connectDB();
 app.use(
   cors({
     origin: [
-      "http://localhost:3000"
-      
+      "http://localhost:3000",
+      "https://employee-leave-attendance-management-three.vercel.app"
     ],
     credentials: true,
   })
