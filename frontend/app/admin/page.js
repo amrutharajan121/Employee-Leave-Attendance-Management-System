@@ -27,7 +27,7 @@ export default function AdminDashboard() {
       setLoading(true);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/statistics/dashboard-summary",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/statistics/dashboard-summary`,
         {
           method: "GET",
           credentials: "include",
@@ -58,29 +58,28 @@ export default function AdminDashboard() {
 
   // ==================== LOGOUT ====================
 
-  const handleLogout = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
-        {
-          method: "POST",
-          credentials: "include",
-        }
-      );
+ const handleLogout = async () => {
+  try {
+    const response = await fetch(
+  `${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`,
+  {
+    method: "POST",
+    credentials: "include",
+  }
+);
 
-      const data = await response.json();
+    const data = await response.json();
 
-      if (response.ok) {
-        router.replace("/");
-      } else {
-        alert(data.message || "Logout failed");
-      }
-    } catch (error) {
-      console.error("Logout error:", error);
-      alert("Unable to connect to server");
+    if (response.ok) {
+      router.replace("/");
+    } else {
+      alert(data.message || "Logout failed");
     }
-  };
-
+  } catch (error) {
+    console.error("Logout error:", error);
+    alert("Unable to connect to server");
+  }
+};
   // ==================== DASHBOARD FEATURES ====================
 
   const features = [
